@@ -1,8 +1,12 @@
 version: "3"
 services:
   legal:
-    build: .
+    image: nginx:alpine
     container_name: pdflover-legal
     ports:
       - "8090:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./privacy.html:/usr/share/nginx/html/privacy.html:ro
+      - ./terms.html:/usr/share/nginx/html/terms.html:ro
     restart: unless-stopped
